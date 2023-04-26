@@ -1,0 +1,33 @@
+package com.wisch096.cardapio.food;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Table(name = "foods")
+@Entity(name = "foods")
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
+public class Food {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nome;
+
+    private String image;
+
+    private Integer preco;
+
+    public Food(FoodRequestDTO data) {
+        this.image = data.image();
+        this.preco = data.preco();
+        this.nome = data.nome();
+    }
+
+}
